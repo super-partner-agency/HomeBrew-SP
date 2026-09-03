@@ -6,24 +6,23 @@
 class Superpartner < Formula
   desc "SuperPartner: tus máquinas a distancia, igual que en local"
   homepage "https://auth.superpartner.ca"
-  version "0.0.2"
-  revision 1
+  version "0.0.3"
   license "NONE"
 
   on_macos do
     on_arm do
-      url "https://auth.superpartner.ca/descargas/v0.0.2/superpartner-darwin-arm64"
-      sha256 "c0a5328cfca07ddf3ddac971b530b8b9ac047862b0b981dc1594cab69a69a58f"
+      url "https://auth.superpartner.ca/descargas/v0.0.3/superpartner-darwin-arm64"
+      sha256 "18b96aa0cb878ff74e4ccca234261fd0f199c1e2a2de1781daf470f10989fc8e"
     end
     on_intel do
-      url "https://auth.superpartner.ca/descargas/v0.0.2/superpartner-darwin-x64"
-      sha256 "05fbc321e8a34347bb8e0b41e364c90bcb1b753198fa6ba57f8b07ed506bc9a2"
+      url "https://auth.superpartner.ca/descargas/v0.0.3/superpartner-darwin-x64"
+      sha256 "a7734a03ea744cde6cba9e99c7713d32ea481668969c915679bec3da964547fb"
     end
   end
 
   # El icono, servido por el hub como los binarios.
   resource "icono" do
-    url "https://auth.superpartner.ca/descargas/v0.0.2/superpartner.icns"
+    url "https://auth.superpartner.ca/descargas/v0.0.3/superpartner.icns"
     sha256 "25bfa2a35cc7c1af2a3a9c2c67fd0ba56a2ff0095c35be955f44cabb2e56e468"
   end
 
@@ -36,6 +35,8 @@ class Superpartner < Formula
     (app/"Resources").mkpath
     binario = Dir["superpartner-darwin-*"].first
     (app/"MacOS").install binario => "superpartner"
+    # Lo descargado llega sin permiso de ejecución; brew sólo lo arregla en bin/.
+    chmod 0755, app/"MacOS/superpartner"
     resource("icono").stage { (app/"Resources").install "superpartner.icns" }
     (app/"Info.plist").write <<~PLIST
       <?xml version="1.0" encoding="UTF-8"?>
@@ -47,8 +48,8 @@ class Superpartner < Formula
         <key>CFBundleExecutable</key><string>superpartner</string>
         <key>CFBundleIconFile</key><string>superpartner</string>
         <key>CFBundlePackageType</key><string>APPL</string>
-        <key>CFBundleShortVersionString</key><string>0.0.2</string>
-        <key>CFBundleVersion</key><string>0.0.2</string>
+        <key>CFBundleShortVersionString</key><string>0.0.3</string>
+        <key>CFBundleVersion</key><string>0.0.3</string>
         <key>LSUIElement</key><true/>
         <key>LSMinimumSystemVersion</key><string>12.0</string>
       </dict></plist>
