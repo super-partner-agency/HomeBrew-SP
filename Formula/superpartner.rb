@@ -6,23 +6,23 @@
 class Superpartner < Formula
   desc "SuperPartner: tus máquinas a distancia, igual que en local"
   homepage "https://auth.superpartner.ca"
-  version "0.0.4"
+  version "0.0.5"
   license "NONE"
 
   on_macos do
     on_arm do
-      url "https://auth.superpartner.ca/descargas/v0.0.4/superpartner-darwin-arm64"
-      sha256 "cf87f0d59b3422c7b3d23bfa2f7a621a365550e9dbc931dff6e838be9ae599cb"
+      url "https://auth.superpartner.ca/descargas/v0.0.5/superpartner-darwin-arm64"
+      sha256 "e558949037c435e3b7e02cfcfd207730a118a3ff837ba0edf1eed1ffc67ef5ef"
     end
     on_intel do
-      url "https://auth.superpartner.ca/descargas/v0.0.4/superpartner-darwin-x64"
-      sha256 "66907403f106f9000b519a7ef2d6afb8f2d287ca607880d45aee6218cc67312e"
+      url "https://auth.superpartner.ca/descargas/v0.0.5/superpartner-darwin-x64"
+      sha256 "5b4fdf5ead1a8b8f832244da5169554c192c9d378dfae0fc8589bbad01f74fa9"
     end
   end
 
   # El icono, servido por el hub como los binarios.
   resource "icono" do
-    url "https://auth.superpartner.ca/descargas/v0.0.4/superpartner.icns"
+    url "https://auth.superpartner.ca/descargas/v0.0.5/superpartner.icns"
     sha256 "25bfa2a35cc7c1af2a3a9c2c67fd0ba56a2ff0095c35be955f44cabb2e56e468"
   end
 
@@ -48,8 +48,8 @@ class Superpartner < Formula
         <key>CFBundleExecutable</key><string>superpartner</string>
         <key>CFBundleIconFile</key><string>superpartner</string>
         <key>CFBundlePackageType</key><string>APPL</string>
-        <key>CFBundleShortVersionString</key><string>0.0.4</string>
-        <key>CFBundleVersion</key><string>0.0.4</string>
+        <key>CFBundleShortVersionString</key><string>0.0.5</string>
+        <key>CFBundleVersion</key><string>0.0.5</string>
         <key>LSUIElement</key><true/>
         <key>LSMinimumSystemVersion</key><string>12.0</string>
       </dict></plist>
