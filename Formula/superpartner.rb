@@ -2,27 +2,27 @@
 # El tap público es adiazpe/HomeBrew-SP (brew sólo mira Formula/):
 #   brew tap adiazpe/sp
 #   brew install adiazpe/sp/superpartner
-#   brew services start superpartner
+#   superpartner --instalar-servicio --hub https://…
 class Superpartner < Formula
   desc "SuperPartner: tus máquinas a distancia, igual que en local"
   homepage "https://auth.superpartner.ca"
-  version "0.0.3"
+  version "0.0.4"
   license "NONE"
 
   on_macos do
     on_arm do
-      url "https://auth.superpartner.ca/descargas/v0.0.3/superpartner-darwin-arm64"
-      sha256 "18b96aa0cb878ff74e4ccca234261fd0f199c1e2a2de1781daf470f10989fc8e"
+      url "https://auth.superpartner.ca/descargas/v0.0.4/superpartner-darwin-arm64"
+      sha256 "cf87f0d59b3422c7b3d23bfa2f7a621a365550e9dbc931dff6e838be9ae599cb"
     end
     on_intel do
-      url "https://auth.superpartner.ca/descargas/v0.0.3/superpartner-darwin-x64"
-      sha256 "a7734a03ea744cde6cba9e99c7713d32ea481668969c915679bec3da964547fb"
+      url "https://auth.superpartner.ca/descargas/v0.0.4/superpartner-darwin-x64"
+      sha256 "66907403f106f9000b519a7ef2d6afb8f2d287ca607880d45aee6218cc67312e"
     end
   end
 
   # El icono, servido por el hub como los binarios.
   resource "icono" do
-    url "https://auth.superpartner.ca/descargas/v0.0.3/superpartner.icns"
+    url "https://auth.superpartner.ca/descargas/v0.0.4/superpartner.icns"
     sha256 "25bfa2a35cc7c1af2a3a9c2c67fd0ba56a2ff0095c35be955f44cabb2e56e468"
   end
 
@@ -48,8 +48,8 @@ class Superpartner < Formula
         <key>CFBundleExecutable</key><string>superpartner</string>
         <key>CFBundleIconFile</key><string>superpartner</string>
         <key>CFBundlePackageType</key><string>APPL</string>
-        <key>CFBundleShortVersionString</key><string>0.0.3</string>
-        <key>CFBundleVersion</key><string>0.0.3</string>
+        <key>CFBundleShortVersionString</key><string>0.0.4</string>
+        <key>CFBundleVersion</key><string>0.0.4</string>
         <key>LSUIElement</key><true/>
         <key>LSMinimumSystemVersion</key><string>12.0</string>
       </dict></plist>
@@ -59,13 +59,21 @@ class Superpartner < Formula
     bin.install_symlink app/"MacOS/superpartner"
   end
 
-  service do
-    # Dentro del bloque service brew no expone prefix; sólo opt_prefix y compañía.
-    run [opt_prefix/"Super Partner.app/Contents/MacOS/superpartner"]
-    environment_variables REMOTO_HUB: "https://auth.superpartner.ca"
-    keep_alive true
-    log_path var/"log/superpartner.log"
-    error_log_path var/"log/superpartner.log"
+  # Sin bloque service: el agente instala su propio plist de launchd con
+  # AssociatedBundleIdentifiers, que es lo que hace que macOS muestre
+  # «Super Partner» con su icono en Ítems de inicio. brew no escribe esa clave.
+  def post_install
+    system "/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister",
+           "-f", prefix/"Super Partner.app"
+  end
+
+  def caveats
+    <<~EOS
+      Para que arranque con tu sesión y aparezca como «Super Partner» en Ítems de inicio:
+        superpartner --instalar-servicio --hub https://auth.superpartner.ca
+      Quitar:  superpartner --quitar-servicio
+      Registro: ~/Library/Logs/SuperPartner/superpartner.log
+    EOS
   end
 
   test do
