@@ -7,6 +7,7 @@ class Superpartner < Formula
   desc "SuperPartner: tus máquinas a distancia, igual que en local"
   homepage "https://auth.superpartner.ca"
   version "0.0.2"
+  revision 1
   license "NONE"
 
   on_macos do
@@ -58,7 +59,8 @@ class Superpartner < Formula
   end
 
   service do
-    run [prefix/"Super Partner.app/Contents/MacOS/superpartner"]
+    # Dentro del bloque service brew no expone prefix; sólo opt_prefix y compañía.
+    run [opt_prefix/"Super Partner.app/Contents/MacOS/superpartner"]
     environment_variables REMOTO_HUB: "https://auth.superpartner.ca"
     keep_alive true
     log_path var/"log/superpartner.log"
