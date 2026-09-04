@@ -1,28 +1,29 @@
 # Fórmula de Homebrew de SuperPartner (el agente). Generada por scripts/formula-brew.mjs.
 # El tap público es super-partner-agency/HomeBrew-SP (brew sólo mira Formula/):
 #   brew tap super-partner-agency/sp
+#   brew trust super-partner-agency/sp   (brew exige confiar en un tap ajeno)
 #   brew install super-partner-agency/sp/superpartner
 #   superpartner --instalar-servicio --hub https://…
 class Superpartner < Formula
   desc "SuperPartner: tus máquinas a distancia, igual que en local"
   homepage "https://auth.superpartner.ca"
-  version "1.0.0"
+  version "1.0.1"
   license "NONE"
 
   on_macos do
     on_arm do
-      url "https://auth.superpartner.ca/descargas/v1.0.0/superpartner-darwin-arm64"
-      sha256 "03e4dbde84a9d8583115843a126561fa9d061b8bfbfd682ed4b152d650b74ab2"
+      url "https://auth.superpartner.ca/descargas/v1.0.1/superpartner-darwin-arm64"
+      sha256 "c586bd3c91d00153e3834577320d6d4bdaf163f2dbc58f4bbb2f38fafc77a7c6"
     end
     on_intel do
-      url "https://auth.superpartner.ca/descargas/v1.0.0/superpartner-darwin-x64"
-      sha256 "cc1ad83a2ff9129a85f844e840f4471f6f813ab89a923a6481cbac7e0156578e"
+      url "https://auth.superpartner.ca/descargas/v1.0.1/superpartner-darwin-x64"
+      sha256 "bb53b374d3ca0e9d9ddc7b529c0dc07e15cda63b2ad2e8a4d34168bdded44967"
     end
   end
 
   # El icono, servido por el hub como los binarios.
   resource "icono" do
-    url "https://auth.superpartner.ca/descargas/v1.0.0/superpartner.icns"
+    url "https://auth.superpartner.ca/descargas/v1.0.1/superpartner.icns"
     sha256 "25bfa2a35cc7c1af2a3a9c2c67fd0ba56a2ff0095c35be955f44cabb2e56e468"
   end
 
@@ -48,8 +49,8 @@ class Superpartner < Formula
         <key>CFBundleExecutable</key><string>superpartner</string>
         <key>CFBundleIconFile</key><string>superpartner</string>
         <key>CFBundlePackageType</key><string>APPL</string>
-        <key>CFBundleShortVersionString</key><string>1.0.0</string>
-        <key>CFBundleVersion</key><string>1.0.0</string>
+        <key>CFBundleShortVersionString</key><string>1.0.1</string>
+        <key>CFBundleVersion</key><string>1.0.1</string>
         <key>LSUIElement</key><true/>
         <key>LSMinimumSystemVersion</key><string>12.0</string>
       </dict></plist>
