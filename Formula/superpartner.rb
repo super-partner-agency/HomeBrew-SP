@@ -1,7 +1,7 @@
 # Fórmula de Homebrew de SuperPartner (el agente). Generada por scripts/formula-brew.mjs.
-# El tap público es adiazpe/HomeBrew-SP (brew sólo mira Formula/):
-#   brew tap adiazpe/sp
-#   brew install adiazpe/sp/superpartner
+# El tap público es super-partner-agency/HomeBrew-SP (brew sólo mira Formula/):
+#   brew tap super-partner-agency/sp
+#   brew install super-partner-agency/sp/superpartner
 #   superpartner --instalar-servicio --hub https://…
 class Superpartner < Formula
   desc "SuperPartner: tus máquinas a distancia, igual que en local"
